@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const Listing = require("./models/listing.js");
 const path = require("path");
 const methodOverride = require("method-override");
+const ejsMate = require("ejs-mate");
 
 const port = 8080;
 
@@ -25,6 +26,8 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+app.engine("ejs", ejsMate);
+app.use(express.static(path.join(__dirname,"/public")));
 
 //Route Directory
 app.get("/", (req, res) => {
@@ -81,23 +84,7 @@ app.delete("/listings/:id", async(req,res)=>{
     const delItem = await Listing.findByIdAndDelete(id);
     console.log(delItem);
     res.redirect("/listings");
-})
-
-
-
-// app.get("/testListing", async (req,res)=>{
-//     let sampleListing = new Listing({
-//         title: "My 3rd Project",
-//         description: "Its is for testing purporse",
-//         price: 1400,
-//         location: "Dinajpur",
-//         country: "Bangladesh",
-//     });
-//     await sampleListing.save().then((res)=>{
-//         console.log(res);
-//     }).catch((err)=> console.log(err));
-//     res.send("success");
-// });
+});
 
 app.listen(port, () => {
     console.log("server is listening to port 8080");

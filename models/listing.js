@@ -10,10 +10,10 @@ const listingSchema = new Schema({
     description: String,
     image: {
         type: String,
-        default: "https://www.istockphoto.com/photo/subsidi-house-from-government-real-estate-and-property-investment-residential-gm1443892103-482733021?utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Farea&utm_medium=affiliate&utm_source=unsplash&utm_term=area%3A%3Avideo-affiliates%3Acontrol",
+        default: "https://images.unsplash.com/photo-1578645510447-e20b4311e3ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDF8fGNhbXBpbmd8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
         set: (v) => 
             v === "" 
-        ? "https://www.istockphoto.com/photo/subsidi-house-from-government-real-estate-and-property-investment-residential-gm1443892103-482733021?utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Farea&utm_medium=affiliate&utm_source=unsplash&utm_term=area%3A%3Avideo-affiliates%3Acontrol" : v,
+        ? "https://images.unsplash.com/photo-1578645510447-e20b4311e3ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDF8fGNhbXBpbmd8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60" : v,
     },
     price: Number,
     location: String,
