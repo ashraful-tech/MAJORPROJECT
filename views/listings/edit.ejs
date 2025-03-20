@@ -1,46 +1,56 @@
 <%- layout("/layouts/boilerplate") %>
 
+    <div class="row mt-3">
+        <div class="col-8 offset-2">
+            <h3>Edit Listing</h3>
+            <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation">
 
-<div class="row mt-3">
-   <div class="col-8 offset-2">
-    <h3>Edit Listing</h3>
-    <form method="POST" action="/listings/<%= listing._id %>?_method=PUT">
-        
-        <div col="mb-3">
-            <label for="title" class="form-label">Title</label>
-            <input type="text" name="listing[title]" id="" value="<%= listing.title %>" class="form-control"> 
-        </div>
+                <div col="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" name="listing[title]" id="" value="<%= listing.title %>" class="form-control"
+                        required>
+                    <div class="invalid-feedback">Title can't empty</div>
+                </div>
 
-        <div class="mb-3">
-            <label for="Description" class="form-label">Discription</label>
-            <textarea type="text" name="listing[description]" id="" rows="9" cols="50" class="form-control"><%= listing.description %></textarea> 
-        </div>
+                <div class="mb-3">
+                    <label for="Description" class="form-label">Discription</label>
+                    <textarea type="text" name="listing[description]" id="" rows="9" cols="50" class="form-control"
+                        required><%= listing.description %></textarea>
+                    <div class="invalid-feedback">Description can't empty</div>
+                </div>
 
-        <div class="mb-3">
-            <label for="image" class="form-label">Image</label>
-            <input type="text" name="listing[image]" id="" value="<%= listing.image %>" class="form-control"> 
-        </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image</label>
+                    <input type="text" name="listing[image]" id="" value="<%= listing.image %>" class="form-control" required>
+                    <div class="invalid-feedback">Image can't empty</div> 
+                </div>
 
-        <div class="mb-3 col-6">
-            <label for="Price" class="form-label">Price</label>
-            <input type="number" name="listing[price]" id="" value="<%= listing.price %>" class="form-control"> 
-        </div>
+                <div class="mb-3 col-6">
+                    <label for="Price" class="form-label">Price</label>
+                    <input type="number" name="listing[price]" id="" value="<%= listing.price %>" class="form-control"
+                        required>
+                    <div class="invalid-feedback">Price can't empty; Give a number</div>
+                </div>
 
-        <div class="row">
-            <div class="mb-3 col-6">
-                <label for="location" class="form-label">Location</label>
-                <input type="text" name="listing[location]" id="" value="<%= listing.location %>" class="form-control"> 
-            </div>
-    
-            <div class="mb-3 col-6">
-                <label for="country" class="form-label">Country</label>
-                <input type="text" name="listing[country]" id="" value="<%= listing.country %>" class="form-control"> 
-    
-            </div>
+                <div class="row">
+                    <div class="mb-3 col-6">
+                        <label for="location" class="form-label">Location</label>
+                        <input type="text" name="listing[location]" id="" value="<%= listing.location %>"
+                            class="form-control" required>
+                            <div class="invalid-feedback">location can't empty</div> 
+                    </div>
+
+                    <div class="mb-3 col-6">
+                        <label for="country" class="form-label">Country</label>
+                        <input type="text" name="listing[country]" id="" value="<%= listing.country %>"
+                            class="form-control" required>
+                            <div class="invalid-feedback">Country can't empty</div> 
+
+                    </div>
+                </div>
+
+                <button class="btn btn-dark mt-3 mb-1 edit-btn">Edit</button>
+
+            </form>
         </div>
-        
-        <button class="btn btn-dark mt-3 mb-1 edit-btn">Edit</button>
-        
-    </form>
-   </div>
-</div>
+    </div>
