@@ -5,6 +5,8 @@ const ExpressError = require("../utils/ExpressError.js");
 const { reviewSchema } = require("../schema.js");
 const Review = require("../models/review");
 const Listing = require("../models/listing.js");
+const flash = require("connect-flash");
+
 
 
 //Validate Review
@@ -20,7 +22,7 @@ const validateReview = (req, res, next) => {
 
 
 router.post("/", validateReview, wrapAsync(async (req, res) => {
-    console.log(req.params.id);
+    //console.log(req.params.id);
     let listing = await Listing.findById(req.params.id);
     let newReview = new Review(req.body.review);
 
@@ -29,7 +31,7 @@ router.post("/", validateReview, wrapAsync(async (req, res) => {
     await newReview.save();
     await listing.save();
 
-    console.log("new review saved");
+    req.flash("success", "Review Added Successfully");
     res.redirect(`/listings/${listing._id}`);
 }));
 
@@ -40,7 +42,7 @@ router.delete("/:reviewId", wrapAsync(async (req, res) => {
 
     await Listing.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
     await Review.findByIdAndDelete(reviewId);
-
+    req.flash("success", "Review Deleted Successfully");
     res.redirect(`/listings/${id}`);
 })
 );
