@@ -34,10 +34,10 @@ router.get("/:id", wrapAsync(async (req, res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id).populate("reviews");
     if(!listing){
-        req.flash("error", "this listing doesn't exist or deleted!");
-        res.redirect("/listings");
+        req.flash("error", "Not Found");
+        return res.redirect("/listings");
     }
-    res.render("listings/show.ejs", { listing })
+    return res.render("listings/show.ejs", { listing })
 }));
 
 
@@ -54,7 +54,11 @@ router.post("/", validateListing, wrapAsync(async (req, res) => {
 router.get("/:id/edit", wrapAsync(async (req, res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id);
-    res.render("listings/edit.ejs", { listing });
+    if(!listing){
+        req.flash("error", "Not Exist or Not Found");
+        return res.redirect("/listings");
+    }
+    return res.render("listings/edit.ejs", { listing });
 }));
 
 //Update Route
